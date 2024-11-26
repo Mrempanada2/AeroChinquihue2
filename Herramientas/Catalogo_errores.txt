@@ -1,0 +1,15 @@
+Codigo A: Se ejecuto el método crearAdmin(Bdd), y ya existía un admin (nombre de usuario == Admin)
+
+Codigo B:
+
+Codigo C: error al insertar usuario en la base de datos, algo salió mal en
+registro.py insetarUsuario(
+
+
+
+
+
+
+
+
+

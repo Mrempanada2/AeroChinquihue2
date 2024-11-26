@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="rec1">
+    <file>prueba1.jfif</file>
+  </qresource>
+</RCC>

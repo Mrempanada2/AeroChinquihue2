@@ -1,0 +1,11 @@
+Use Python y SQL para manejar la base de datos
+Hay que ejecutar el programa desde app.py
+Soy conciente de que al código le puse rutas de acceso de mi pc, si puede ver este mensaje es porque no alcanze
+a configurar las direcciones para que se abran desde la carpeta.
+
+Uso 2 bases de datos, una para usuarios y otra para los vuelos o encomiendas que hagan los usuarios
+las ID de los usuarios se comparten entre las 2, para evitar problemas
+
+También use QT Designer
+
+Gracias de antemano por la comprension
