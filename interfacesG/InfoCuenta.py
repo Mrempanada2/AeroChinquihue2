@@ -2,7 +2,7 @@ from PyQt6 import uic
 import sqlite3
 
 
-class InfoCuenta:
+class InfoCuenta():
     def __init__(self,usuarioID):
         #Cargar interfaz grafica con uic.loadUI
         self.estaID = usuarioID
@@ -31,7 +31,7 @@ class InfoCuenta:
             
     def obtenerInfo(self,usuarioId):
         try:
-            self.conexion = sqlite3.connect(r"C:\Users\samue\Desktop\Proyecto\AeroChin.db")
+            self.conexion = sqlite3.connect("BasesDeDatos/AeroChin.db")
             self.cursor = self.conexion.cursor()
             
             #Hacer consulta SQL para obtener la info del usuario

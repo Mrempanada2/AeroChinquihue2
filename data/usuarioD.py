@@ -1,4 +1,4 @@
-import Bdd as cno1
+from BasesDeDatos import Bdd as cno1
 from modelo.usuario import Usuario
 
 class usuarioData():
@@ -15,7 +15,7 @@ class usuarioData():
         
         resultao = self.cursor.execute("SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?",(usuario._usuario,usuario._contrasena))
         #Si no existe el usuario
-        fila_us = resultao.fetchone()
+        fila_us = resultao.fetchone()#Fetchone para seleccionar esa fila solamente en la base de datos y trabajar con ella
         if fila_us:
             #Comprobar id print (fila_us[0])
             usuarioT = Usuario(id=fila_us[0],nombre=fila_us[1],usuario=fila_us[2])

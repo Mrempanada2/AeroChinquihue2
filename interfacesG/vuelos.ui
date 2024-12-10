@@ -25,7 +25,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>240</x>
+     <x>210</x>
      <y>20</y>
      <width>141</width>
      <height>41</height>
@@ -93,12 +93,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Cochamó</string>
+     <string>Cochamo</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Puelo Bajo</string>
+     <string>Puelo_Bajo</string>
     </property>
    </item>
    <item>
@@ -108,7 +108,7 @@
    </item>
    <item>
     <property name="text">
-     <string>Rio Negro</string>
+     <string>Rio_Negro</string>
     </property>
    </item>
    <item>
@@ -133,12 +133,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Reñihue</string>
+     <string>Renihue</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Isla Quenac</string>
+     <string>Isla_Quenac</string>
     </property>
    </item>
    <item>
@@ -148,12 +148,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Chaitén</string>
+     <string>Chaiten</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Santa Bárbara</string>
+     <string>Santa_Barbara</string>
     </property>
    </item>
   </widget>
@@ -194,17 +194,17 @@
    </item>
    <item>
     <property name="text">
-     <string>Cessna310</string>
+     <string>VCessna310</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Cessna210Caravan</string>
+     <string>VCessna208_Caravan</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>LET410UVP-E20</string>
+     <string>VLET_410_UVP_E20</string>
     </property>
    </item>
   </widget>
@@ -224,8 +224,8 @@
   <widget class="QPushButton" name="btnConfirmarV">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>380</y>
+     <x>200</x>
+     <y>370</y>
      <width>181</width>
      <height>41</height>
     </rect>
@@ -239,11 +239,32 @@
     <string>Confirmar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="lblError">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>210</y>
+     <x>20</x>
+     <y>160</y>
+     <width>231</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
      <width>211</width>
      <height>21</height>
     </rect>
@@ -254,115 +275,20 @@
     </font>
    </property>
    <property name="text">
-    <string>Precio total:</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignHCenter|Qt::AlignTop</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblPrecio">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>240</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
+    <string>Elige un horario</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QLabel" name="lblShowPrecio">
+  <widget class="QComboBox" name="seleccionarHora">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>240</y>
-     <width>141</width>
-     <height>21</height>
+     <x>20</x>
+     <y>210</y>
+     <width>201</width>
+     <height>22</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblClientefrecuente">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>270</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblEmergencia">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>310</y>
-     <width>301</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="lblError">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>160</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
  </widget>

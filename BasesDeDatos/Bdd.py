@@ -1,11 +1,11 @@
 import sqlite3
 
-class Conexion():
+class Conexion():#Crear y conectarse a la base de datos de Usuarios
     
     def __init__(self):
         #Crear variable de instancia para conectarse a la base de datos si no existe (crearTablaDatos) y manejar errores
         try:
-            self.cno = sqlite3.connect("AeroChin.db")
+            self.cno = sqlite3.connect("BasesDeDatos/AeroChin.db")
             self.crearTablaDatos()
         except Exception as e:
             print(e)  
@@ -25,11 +25,11 @@ class Conexion():
         pEmergencia INTEGER DEFAULT 0,
         administrador INTEGER DEFAULT 0) """
         
-        #Conexion para ejecutar la consulta (cno) usando un cursor para interactuar con la base de datos
+        #ejecutar la consulta (cno) usando un cursor para interactuar con la base de datos
         #por medio de una conexion
         curs = self.cno.cursor()
         curs.execute(tablaUsersSQL)
-        curs.close()
+        curs.close()################################################################################################
         self.crearAdmin()
         
     #Crear admin, usuario por defecto
@@ -50,9 +50,11 @@ class Conexion():
         except Exception as e:
             print("El usuario admin ya habia sido creado,codigo A",e)
     
-    #Retorno de "conexion" para usarla primero en usuarioD
+    #Retorno de "conexion" para usarla en otras clases
     def conectarr(self):
         return self.cno
+    
+
 
         
         

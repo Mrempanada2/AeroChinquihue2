@@ -3,8 +3,8 @@ from modelo.usuario import Usuario
 from data.usuarioD import usuarioData
 from interfacesG.AeroChinMain import AeroChinquihuePrincipal
 from interfacesG.registro import Registro
-
-class Login:
+#En el login se pasa la ID al resto de ventanas, de acuerdo al usuario y contraseña.
+class Login():
     def __init__(self):
         self.login = uic.loadUi("interfacesG/login.ui")
         self.iniciarUI()

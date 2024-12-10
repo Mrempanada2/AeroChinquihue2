@@ -1,29 +1,37 @@
-import sqlite3
+from modelo.usuarioTransaccion import UsuarioTransaccion
+from BasesDeDatos import BddVuelos as cno2
 
-class ConexionTrs():
+class usuarioDataT():
     
-    def __init__(self):
-        #Crear variable de instancia para conectarse a la base de datos si no existe (crearTablaDatos) y manejar errores
-        try:
-            self.conn = sqlite3.connect("AeroChinPagos.db")
-            self.crearTablaPagos()
-        except Exception as e:
-            print(e)
-    
-    def crearTablaPagos(self):
-        tablaUsPagos = """CREATE TABLE IF NOT EXISTS pagos 
-        (id TEXT,
-        usuario TEXT UNIQUE,
-        destino TEXT,
-        vuelo INTEGER DEFAULT 0,
-        encomienda INTEGER DEFAULT 0)"""        
-        #Cursor para ejecutar esta consulta
-        curs = self.conn.cursor()
-        curs.execute(tablaUsPagos)
-        curs.close()
-    
+    def __init__(self, usuarioT:UsuarioTransaccion):
+        #Reutilizar conexion de BddVuelos para la abse de AeroChinVuelos
+        self.usuarioT = usuarioT
+        self.db = cno2.ConexionBddVuelosP().conectarTablaVuelosP()
+        #Crear cursor para interactuar con la base de datos
+        self.cursor = self.db.cursor()
+        self.devolverDatos()
+            
+        
+    def devolverDatos(self):
+        resultao = self.cursor.execute("SELECT * FROM vuelosp WHERE id = ?", (str(self.usuarioT._id),))
+        Fila_Tr = resultao.fetchone()
+        
+        if Fila_Tr:
+            IdTransaccionParcial = UsuarioTransaccion(id=Fila_Tr[0], Destino=Fila_Tr[1], tipoAvion=Fila_Tr[2], Vuelo=Fila_Tr[3], Encomienda=Fila_Tr[4], kilos=Fila_Tr[5], id_pasaje =Fila_Tr[6])##Modificar esto segun lo que pioda el programa.
+            #self.db.close()
+            #self.cursor.close()
+            return IdTransaccionParcial
+        else:
+            #self.db.close()
+            #self.cursor.close()
+            return None
+        
     def conectarrTrs(self):
-        return self.conn
+        return self.db
+    
+    def cerrarConexiones(self):
+        self.db.close()
+        self.cursor.close()
     
 
         

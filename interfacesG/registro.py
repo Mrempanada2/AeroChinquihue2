@@ -1,16 +1,18 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox
 from modelo.usuario import Usuario
-from Bdd import Conexion
 import sqlite3
 
 
 
-class Registro:
+class Registro():
     def __init__(self):
-        self.db = Conexion().conectarr()
+        try:
+            self.db = sqlite3.connect("BasesDeDatos/AeroChin.db")
+        except Exception as e:
+            print("No se hayo la base de datos. ",e) 
         self.valorPemerngencia = 0
-        self.registro = uic.loadUi(r"C:\Users\samue\Desktop\Proyecto\interfacesG\Registro.ui")
+        self.registro = uic.loadUi("interfacesG/Registro.ui")
         self.iniciarUI()
         self.registro.lblError.setText("")
         self.registro.show()
@@ -45,6 +47,7 @@ class Registro:
                 self.db.commit()
                 cursor.close()
                 self.registro.close()
+                self.db.close()##########################################################################################Agregue este close de la conexion, para cuando si se registre
                 print(f"Usuario insertado id:{NuevoUsu._id}")
 
 
@@ -74,3 +77,8 @@ class Registro:
         self.valorPemerngencia = 1 if self.registro.btnPeEmergencia.isChecked() else 0
         #Esto es para comprobar en la consola surante el proceso de desarrollo
         print(f"Estado de Personal de Emergencias: {'Activado' if self.valorPemerngencia else 'Desactivado'}")
+        
+
+
+        
+    

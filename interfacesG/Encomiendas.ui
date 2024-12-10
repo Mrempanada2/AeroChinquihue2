@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>237</height>
+    <height>299</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QComboBox" name="Edestino">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -38,12 +38,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Cochamó</string>
+     <string>Cochamo</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Puelo Bajo</string>
+     <string>Puelo_Bajo</string>
     </property>
    </item>
    <item>
@@ -53,7 +53,7 @@
    </item>
    <item>
     <property name="text">
-     <string>Rio Negro</string>
+     <string>Rio_Negro</string>
     </property>
    </item>
    <item>
@@ -73,17 +73,17 @@
    </item>
    <item>
     <property name="text">
-     <string>Pillán</string>
+     <string>Pillan</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Reñihue</string>
+     <string>Renihue</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Isla Quenac</string>
+     <string>Isla_Quenac</string>
     </property>
    </item>
    <item>
@@ -93,12 +93,12 @@
    </item>
    <item>
     <property name="text">
-     <string>Chaitén</string>
+     <string>Chaiten</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Santa Bárbara</string>
+     <string>Santa_Barbara</string>
     </property>
    </item>
   </widget>
@@ -178,7 +178,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox_2">
+  <widget class="QComboBox" name="EAvion">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -194,17 +194,17 @@
    </item>
    <item>
     <property name="text">
-     <string>Cessna310</string>
+     <string>ECessna310</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Cessna210Caravan</string>
+     <string>ECessna208_Caravan</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>LET410UVP-E20</string>
+     <string>ELet_410_UVP_E20</string>
     </property>
    </item>
   </widget>
@@ -242,7 +242,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="EPeso">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -253,6 +253,48 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnConfirmarE">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>230</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Confirmar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lblError">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>261</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
  </widget>
