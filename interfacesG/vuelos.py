@@ -9,6 +9,7 @@ class Vuelos():
     def __init__(self, usuarioID):
         self._id = usuarioID
         self.vuelos = uic.loadUi("interfacesG/vuelos.ui")
+        self.mostrarInfoVuelos = uic.loadUi("InterfacesG/InfoAviones.ui")
         self.db = cn.ConexionBddVuelosP().conectarTablaVuelosP()
         self.conn = sqlite3.connect("BasesDeDatos/HorariosVuelos.db")
         self.iniciarUI()
@@ -17,6 +18,7 @@ class Vuelos():
     def iniciarUI(self):   
         self.vuelos.lblError.setText("")
         self.llenarComboBoxHorarios() 
+        self.vuelos.btnInfoAviones.clicked.connect(self.mostrarInfoVuelos.show())
         self.vuelos.btnConfirmarV.clicked.connect(self.procesarOperacion)
         
         
@@ -57,7 +59,7 @@ class Vuelos():
     def calcularPago(self):
         try:
             self.curs  = self.db.cursor()
-            obtenerID = self.curs.execute("""SELECT * FROM vuelosp WHERE id = ? """, (self._id,))###Si algo falla es porque quite el self. de curs
+            obtenerID = self.curs.execute("""SELECT * FROM vuelosp WHERE id = ? """, (self._id,))
             FilaUsTransaccion = obtenerID.fetchone()
         
             if FilaUsTransaccion:
@@ -95,8 +97,7 @@ class Vuelos():
             with self.db:
                 self.db.execute(insertarUsuarioEnBdd, values)
                 print(f"Usuario insertado id: {nuevoVuelo._id}")
-                #self.vuelos.close()
-                #self.db.close()
+
                 return True
         except Exception as e:
             print(f"No se logro insertar los valores en la tabla parcial {e}")

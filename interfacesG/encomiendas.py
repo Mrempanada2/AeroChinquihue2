@@ -11,6 +11,7 @@ class Encomiendas():
     def __init__(self, usuarioID):
         self._id = usuarioID
         self.encomiendas = uic.loadUi("interfacesG/Encomiendas.ui")
+        self.mostrarInfoVuelos = uic.loadUi("InterfacesG/InfoAviones.ui")
         self.db = cn.ConexionBddVuelosP().conectarTablaVuelosP()
         self.iniciarUI()
         self.encomiendas.lblError.setText("")
@@ -18,16 +19,14 @@ class Encomiendas():
         
     def iniciarUI(self):
         self.encomiendas.btnConfirmarE.clicked.connect(self.procesarOperacion)
-        self.encomiendas.btnInfoAviones.clicked.connect(self.mostrarInfoAviones)
+        self.encomiendas.btnInfoAviones.clicked.connect(self.mostrarInfoVuelos.show())
         
-    def mostrarInfoAviones(self):
-        print("Debes crear la ventana aun!")
-        pass
+
     def procesarOperacion(self):
         if self.subirDatosEncomienda():
             self.calcularPago()
             self.cerrarConexiones()
-            pass###################################################
+
     
     def calcularPago(self):
         self.curs = self.db.cursor()
@@ -69,8 +68,6 @@ class Encomiendas():
             with self.db:
                 self.db.execute(insertarUsuarioEnBdd, values)
                 print(f"Transaccion parcial insertada. id: {nuevaEncomienda._id}")
-                #self.vuelos.close()
-                #self.db.close()
                 return True
         except Exception as e:
             print(f"No se logro insertar los valores en la tabla parcial {e}")

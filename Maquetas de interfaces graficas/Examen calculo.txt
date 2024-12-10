@@ -1,4 +1,0 @@
-Dominio y recorrido,asintotas,paridad,biyectividad,inversa,comprobar inversa
-
-operar funciones y componer funciones.
-

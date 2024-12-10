@@ -46,9 +46,9 @@ class CalcularPrecios():
             
     #Obtener la Informacion del usuario (cantidad de vuelos,Personal de emergencia, y modificar la cantidad De vuelos si se toma el vuelo)
     def getDatosUsuario(self):
-        self.conexion1 = self.conexionDatosUsuario.cursor()       
-        self.conexion1.execute("""SELECT * FROM usuarios WHERE id = ?""", (self.estaID,))
-        fila_usuarios = self.conexion1.fetchone()
+        conexion1 = self.conexionDatosUsuario.cursor()       
+        conexion1.execute("""SELECT * FROM usuarios WHERE id = ?""", (self.estaID,))
+        fila_usuarios = conexion1.fetchone()
         if fila_usuarios:
             self.esPersonalEmergencias=(fila_usuarios[5])
         
@@ -60,39 +60,38 @@ class CalcularPrecios():
     #Obtener la informacion del vuelo que se pretende tomar
     def getVueloParcial(self):
         
-        self.conexion2 = self.conexionBddParcial.cursor()
-        self.conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
-        fila = self.conexion2.fetchone()
+        conexion2 = self.conexionBddParcial.cursor()
+        conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
+        fila = conexion2.fetchone()
         if fila:
             self.DestinoV=(fila[1])
             self.AvionV=(fila[2])
             self.IdVueloV=(fila[6])
         
-            self.conexion2.execute("""DELETE  FROM vuelosp WHERE id = ?""",(self.estaID,))
+            conexion2.execute("""DELETE  FROM vuelosp WHERE id = ?""",(self.estaID,))
             self.conexionBddParcial.commit()
             print(f"Se extrayeron los datos y las filas de {self.estaID} fueron borradas exitosamente.")
             print(f"ID del vuelo: {self.IdVueloV}")
-            #conexion2.close()
         else:
             print("No se encontro la fila con la id proporcionada.")
             
     def devolverTipoAvion(self):
-        self.conexion2 = self.conexionBddParcial.cursor()
-        self.conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
-        fila = self.conexion2.fetchone()
+        conexion2 = self.conexionBddParcial.cursor()
+        conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
+        fila = conexion2.fetchone()
         if fila:
             AvionV =(fila[2])
             return AvionV
-            #conexion2.close()
+
         else:
             print("No se hayo informacion para esa id")
             return None
     
     def getEncomiendaParcial(self):
         
-        self.conexion2 = self.conexionBddParcial.cursor()
-        self.conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
-        fila = self.conexion2.fetchone()
+        conexion2 = self.conexionBddParcial.cursor()
+        conexion2.execute("""SELECT * FROM vuelosp WHERE id = ?""",(self.estaID,))
+        fila = conexion2.fetchone()
         if fila:
             self.DestinoE=(fila[1])
             self.AvionE=(fila[2])
@@ -104,16 +103,16 @@ class CalcularPrecios():
             self.conexion2.execute("""DELETE  FROM vuelosp WHERE id = ?""",(self.estaID,))
             self.conexionBddParcial.commit()
             print(f"Se extrayeron los datos y las filas de {self.estaID} fueron borradas exitosamente.")
-            #conexion2.close()
+
             
         else:
             print("No se encontro la fila con la id proporcionada.")
         
             
     def comprobarDisponibilidadE(self):
-        self.conexion3 = self.conexionBddPrecios.cursor()
-        self.conexion3.execute(f"""SELECT {self.Destino} FROM preciosDisp WHERE TAvion = ?""",(self.Avion,))
-        Precio = self.conexion3.fetchone()
+        conexion3 = self.conexionBddPrecios.cursor()
+        conexion3.execute(f"""SELECT {self.Destino} FROM preciosDisp WHERE TAvion = ?""",(self.Avion,))
+        Precio = conexion3.fetchone()
         print(f"Buscando precio por kilo para destino: {self.Destino} y avión: {self.Avion}")
 
         if Precio:
@@ -125,9 +124,9 @@ class CalcularPrecios():
 
     #Hayar disponibilidad en los vuelos--encomienda
     def comprobarDisponibilidadV(self):
-        self.conexion3 = self.conexionBddPrecios.cursor()
-        self.conexion3.execute(f"""SELECT {self.Destino} FROM preciosDisp WHERE TAvion = ?""",(self.Avion,))
-        Precio = self.conexion3.fetchone()
+        conexion3 = self.conexionBddPrecios.cursor()
+        conexion3.execute(f"""SELECT {self.Destino} FROM preciosDisp WHERE TAvion = ?""",(self.Avion,))
+        Precio = conexion3.fetchone()
         print(f"Buscando precio para destino: {self.Destino} y avión: {self.Avion}")
 
         if Precio:
