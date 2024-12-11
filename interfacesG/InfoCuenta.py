@@ -1,5 +1,6 @@
 from PyQt6 import uic
 import sqlite3
+from BasesDeDatos import Bdd as cn
 
 
 class InfoCuenta():
@@ -7,11 +8,11 @@ class InfoCuenta():
         #Cargar interfaz grafica con uic.loadUI
         self.estaID = usuarioID
         self.inf = uic.loadUi("interfacesG/InfoCuenta.ui")
-        self.iniciarUI(usuarioID)
+        self.iniciarUI()
         self.inf.show()
         
-    def iniciarUI(self, usuarioID):
-        infoUsuario = self.obtenerInfo(usuarioID)
+    def iniciarUI(self):
+        infoUsuario = self.obtenerInfo(self.estaID)
         if infoUsuario:
             self.inf.txtNombre.setText(infoUsuario[0])
             self.inf.txtUsuario.setText(infoUsuario[1])
@@ -31,13 +32,13 @@ class InfoCuenta():
             
     def obtenerInfo(self,usuarioId):
         try:
-            self.conexion = sqlite3.connect("BasesDeDatos/AeroChin.db")
-            self.cursor = self.conexion.cursor()
+            self.conexion = cn.Conexion().conectarr()
+            cursor = self.conexion.cursor()
             
             #Hacer consulta SQL para obtener la info del usuario
-            self.cursor.execute("""SELECT nombre, usuario, contrasena, cantVuelos, pEmergencia, administrador FROM usuarios WHERE id = ?""", (usuarioId,))
+            cursor.execute("""SELECT nombre, usuario, contrasena, cantVuelos, pEmergencia, administrador FROM usuarios WHERE id = ?""", (usuarioId,))
             
-            Usu_Info = self.cursor.fetchone()
+            Usu_Info = cursor.fetchone()
             if Usu_Info:
                 return Usu_Info
             else:
@@ -46,5 +47,8 @@ class InfoCuenta():
         except Exception as e:
             print("Error al obtener info, error B", e)
             return None
+        finally:
+            if self.conexion:
+                self.conexion.close()
 
             

@@ -29,7 +29,7 @@ class Conexion():#Crear y conectarse a la base de datos de Usuarios
         #por medio de una conexion
         curs = self.cno.cursor()
         curs.execute(tablaUsersSQL)
-        curs.close()################################################################################################
+        curs.close()
         self.crearAdmin()
         
     #Crear admin, usuario por defecto

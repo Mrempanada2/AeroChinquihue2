@@ -1,37 +1,30 @@
 from modelo.usuarioTransaccion import UsuarioTransaccion
-from BasesDeDatos import BddVuelos as cno2
+from BasesDeDatos import Bdd as con
 
 class usuarioDataT():
     
-    def __init__(self, usuarioT:UsuarioTransaccion):
+    def __init__(self, usuarioIdTablaParcial):
         #Reutilizar conexion de BddVuelos para la abse de AeroChinVuelos
-        self.usuarioT = usuarioT
-        self.db = cno2.ConexionBddVuelosP().conectarTablaVuelosP()
+        self.usuarioID = usuarioIdTablaParcial
         #Crear cursor para interactuar con la base de datos
-        self.cursor = self.db.cursor()
         self.devolverDatos()
             
         
     def devolverDatos(self):
-        resultao = self.cursor.execute("SELECT * FROM vuelosp WHERE id = ?", (str(self.usuarioT._id),))
-        Fila_Tr = resultao.fetchone()
+        con1 = con.Conexion().conectarr()
+        with con1:
+            cursor = con1.cursor()
+            consulta = """SELECT * FROM vuelosEncomiendasParciales WHERE id = ?"""
+            cursor.execute(consulta,(int(self.usuarioID),))
         
-        if Fila_Tr:
-            IdTransaccionParcial = UsuarioTransaccion(id=Fila_Tr[0], Destino=Fila_Tr[1], tipoAvion=Fila_Tr[2], Vuelo=Fila_Tr[3], Encomienda=Fila_Tr[4], kilos=Fila_Tr[5], id_pasaje =Fila_Tr[6])##Modificar esto segun lo que pioda el programa.
-            #self.db.close()
-            #self.cursor.close()
-            return IdTransaccionParcial
-        else:
-            #self.db.close()
-            #self.cursor.close()
-            return None
+            Fila_Tr = cursor.fetchone()
         
-    def conectarrTrs(self):
-        return self.db
-    
-    def cerrarConexiones(self):
-        self.db.close()
-        self.cursor.close()
+            if Fila_Tr:
+                return Fila_Tr  
+            else:
+                print("No se haya... error, en data usuarioDataT")
+                return None
+
     
 
         

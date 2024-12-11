@@ -1,5 +1,6 @@
 import sqlite3
 from BasesDeDatos import BddVuelos as cn
+from interfacesG import vuelos as conP
 
 class CalcularPrecios():
     
@@ -11,9 +12,10 @@ class CalcularPrecios():
         try:
             self.conexionDatosUsuario = sqlite3.connect("BasesDeDatos/AeroChin.db")
             self.conexionBddParcial = cn.ConexionBddVuelosP().conectarTablaVuelosP()
-            self.conexionBddFinal = sqlite3.connect("BasesDeDatos/AeroChinquihuePagosFinal.db")
+            #self.conexionBddFinal = sqlite3.connect("BasesDeDatos/AeroChinquihuePagosFinal.db")
             self.conexionBddPrecios = sqlite3.connect("BasesDeDatos/PreciosAeroChin.db")
             self.conexionBddTriple= sqlite3.connect("BasesDeDatos/HorariosVuelos.db")
+            self.coneccs = conP.Vuelos(self.estaID).devolverConexionP()
             ##SE ABRE LA CONEXION Y SE CIERRA CUANDO SE HAGAN LOS IF..
             self.realizarOperacion()
             
@@ -38,9 +40,10 @@ class CalcularPrecios():
     def cerrarConexiones(self):
         self.conexionDatosUsuario.close()
         self.conexionBddParcial.close()
-        self.conexionBddFinal.close()
+        #self.conexionBddFinal.close()
         self.conexionBddPrecios.close()
         self.conexionBddTriple.close()
+        self.coneccs.close()
         
     
             
@@ -142,14 +145,7 @@ class CalcularPrecios():
             pass
             ##Llamar a la funcion de emergencias que genere una posiblidad de evento de emergencia para establecer
             ##el precio en 0 para este usuario.
-        
-    def hayarDisponibilidadV(self):
-        pass
-    def hayarDisponibilidadE():
-        pass
-    
-    def conexionBaseDeDatos3(self):
-        return self.conexionBddTriple
+
         
         
     

@@ -1,5 +1,5 @@
 class UsuarioTransaccion():
-    def __init__(self,id=None, Destino="",tipoAvion="", Vuelo=0, Encomienda=0, kilos=0, id_pasaje=None):
+    def __init__(self,id="", Destino="",tipoAvion="", Vuelo=0, Encomienda=0, kilos=0, id_pasaje=None):
         #atributos "privados", usar "_"
         self._id = id
         #self._usuario = usuario

@@ -1,18 +1,19 @@
 import sqlite3
+from BasesDeDatos import Bdd as cn
 
-class ConexionBddVuelosP():
+class CrearTablaVuelosEncomiendasP():
     
     def __init__(self):
 
         try:
-            self.con = sqlite3.connect("BasesDeDatos/AeroChinquihueVuelosP.db")
+            self.con = cn.Conexion().conectarr()
             self.crearTablaVuelosP()
         except Exception as e:
             print(e)
     
     def crearTablaVuelosP(self):
-        tablaVuelosP = """CREATE TABLE IF NOT EXISTS vuelosp 
-        (id TEXT,
+        tablaVuelosP = """CREATE TABLE IF NOT EXISTS vuelosEncomiendasParciales
+        (id INTEGER,
         destino TEXT,
         tipoAvion TEXT,
         vuelo INTEGER DEFAULT 0,
@@ -24,7 +25,5 @@ class ConexionBddVuelosP():
         cursor = self.con.cursor()
         cursor.execute(tablaVuelosP)
         cursor.close()
-    
-    def conectarTablaVuelosP(self):
-        return self.con
+        self.con.close()
     

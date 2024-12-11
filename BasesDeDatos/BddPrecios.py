@@ -1,11 +1,12 @@
 import sqlite3
+from BasesDeDatos import Bdd as cn
 
 class ConexionPrecios():
     
     def __init__(self):
 
         try:
-            self.con3 = sqlite3.connect("PreciosAeroChin.db")
+            self.con3 = cn.Conexion().conectarr()
         except Exception as e:
             print(e)
     

@@ -1,21 +1,21 @@
 from PyQt6 import uic
 from PyQt6.QtWidgets import QMessageBox
 from modelo.usuario import Usuario
+from BasesDeDatos import Bdd as cn
+from PyQt6.QtCore import QEvent
 import sqlite3
 
 
 
 class Registro():
     def __init__(self):
-        try:
-            self.db = sqlite3.connect("BasesDeDatos/AeroChin.db")
-        except Exception as e:
-            print("No se hayo la base de datos. ",e) 
+        
         self.valorPemerngencia = 0
         self.registro = uic.loadUi("interfacesG/Registro.ui")
         self.iniciarUI()
         self.registro.lblError.setText("")
         self.registro.show()
+             
              
     def registrarse(self):
         if len(self.registro.txtNombreR.text()) < 1:
@@ -35,20 +35,30 @@ class Registro():
             self.registro.txtContrasenaR.setFocus()
         else:
             try:
-                self.registro.lblError.setText("")                                                                                                                #Insertar si es p emergencia o no según el boton, según una funcion. 
+                try:
+                    self.db = cn.Conexion().conectarr()
+                except Exception as e:
+                    print("No se hayo la base de datos. ",e) 
+                    self.db.close()
+                cursor = self.db.cursor()
+                
+                self.registro.lblError.setText("")                                                                                                                
                 NuevoUsu = Usuario(nombre=self.registro.txtNombreR.text(),usuario=self.registro.txtUsuarioR.text(), contrasena=self.registro.txtContrasenaR.text(), pEmergencia=self.valorPemerngencia)
-                insertarUsuarioEnBdd = """INSERT INTO usuarios (nombre, usuario, contrasena, pEmergencia) VALUES (?, ?, ?, ?)"""
+                
+                insertarUsuarioEnBdd = """INSERT INTO usuarios (nombre, usuario, contrasena, pEmergencia) VALUES (?, ?, ?, ?)"""#Consulkta sql.
                 values =(NuevoUsu._nombre, NuevoUsu._usuario, NuevoUsu._contrasena, NuevoUsu._pEmergencia)
                 
-                cursor = self.db.cursor()
                 cursor.execute(insertarUsuarioEnBdd, values)
                 NuevoUsu._id = cursor.lastrowid
                 
                 self.db.commit()
-                cursor.close()
                 self.registro.close()
-                self.db.close()##########################################################################################Agregue este close de la conexion, para cuando si se registre
-                print(f"Usuario insertado id:{NuevoUsu._id}")
+                
+                cursor.close()
+                self.db.close()
+                
+                print(f"Usuario insertado id:{NuevoUsu._id}, usuario{NuevoUsu._usuario}")
+                self.conexionActiva = 1
 
 
             except sqlite3.IntegrityError as e:
@@ -68,15 +78,20 @@ class Registro():
             
     
     def iniciarUI(self):
+        
         #Aqui se inicializazn y manejan los elementos de la UI
         #Campos a rellenar y botones y checkboxes
         self.registro.btnRegistrarse.clicked.connect(self.registrarse)
         self.registro.btnPeEmergencia.clicked.connect(self.setPeEmergencia)       
             
     def setPeEmergencia(self):
+        
         self.valorPemerngencia = 1 if self.registro.btnPeEmergencia.isChecked() else 0
         #Esto es para comprobar en la consola surante el proceso de desarrollo
         print(f"Estado de Personal de Emergencias: {'Activado' if self.valorPemerngencia else 'Desactivado'}")
+
+
+            
         
 
 

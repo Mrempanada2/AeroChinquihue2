@@ -22,13 +22,12 @@ class Login():
             self.login.lblError.setText("")
             usu = Usuario(usuario=self.login.txtUsuario.text(), contrasena=self.login.txtContrasena.text())
             Usur = usuarioData()
-            user_data = Usur.login(usu)  # Suponiendo que devuelve el usuario encontrado o `None`
+            user_data = Usur.login(usu)
             if user_data:
-                #Comprobar id print(user_data._id)
                 self.main = AeroChinquihuePrincipal(user_data._id)  # Pasar ID del usuario
                 self.login.hide()
             else:
-                self.login.lblError.setText("Incorrecto, no se encontró")
+                self.login.lblError.setText("Incorrecto, no se encontró\nel usuario")
                 
     def openRegistro(self):
         self.registro = Registro()
